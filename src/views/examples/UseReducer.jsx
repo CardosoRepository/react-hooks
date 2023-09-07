@@ -11,9 +11,17 @@ const initialState = {
 
 function reducer(state, action) {
     switch (action.type) {
-        case "number_add2":
+        case "NUMBER_ADD_2":
             return { ...state, number: state.number + 2 };
-        case "login":
+        case "NUMBER_MULTI_7":
+            return { ...state, number: state.number * 7 };
+        case "NUMBER_DIV_25":
+            return { ...state, number: state.number / 25 };
+        case "NUMBER_INT":
+            return { ...state, number: parseInt(state.number) };
+        case "NUMBER_ADD_N":
+            return { ...state, number: state.number + action.payload };
+        case "LOGIN":
             return { ...state, user: { name: action.payload } }
         default:
             return { ...state };
@@ -37,13 +45,33 @@ const UseReducer = (props) => {
                 <div className="">
                     <button
                         className="btn"
-                        onClick={() => dispatch({ type: "login", payload: 'Maria' })}>
+                        onClick={() => dispatch({ type: "LOGIN", payload: 'Maria' })}>
                         Login
                     </button>
                     <button
                         className="btn"
-                        onClick={() => dispatch({ type: "number_add2" })}>
+                        onClick={() => dispatch({ type: "NUMBER_ADD_2" })}>
                         +2
+                    </button>
+                    <button
+                        className="btn"
+                        onClick={() => dispatch({ type: "NUMBER_MULTI_7" })}>
+                        *7
+                    </button>
+                    <button
+                        className="btn"
+                        onClick={() => dispatch({ type: "NUMBER_DIV_25" })}>
+                        /25
+                    </button>
+                    <button
+                        className="btn"
+                        onClick={() => dispatch({ type: "NUMBER_INT" })}>
+                        Int
+                    </button>
+                    <button
+                        className="btn"
+                        onClick={() => dispatch({ type: "NUMBER_ADD_N", payload: -9 })}>
+                        -9
                     </button>
                 </div>
             </div>
